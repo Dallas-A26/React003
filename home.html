@@ -98,10 +98,12 @@ render() {
     return (
         <div className="column is-half">
             <ul className="columns is-multiline">
-                {this.props.movies.map(movie => (
-                    <SingleMovie movie={movie}/> 
-                ))
-                } 
+                {this.props.movies.map((movie,index)=> (
+                    <SingleMovie 
+                        movie={movie} 
+                        key={index}
+                    /> 
+                ))} 
             </ul>   
         </div>   
     );
@@ -121,15 +123,15 @@ render() {
             <div className="card">
                 <div className="card-image">
                 <figure className="image is-2by3">
-                    <img src="https://image.tmdb.org/t/p/w185/sm8iVzA7kRp0d4BSIsgXjsSBMKV.jpg"  alt="Sample Title" />
+                    <img src={"https://image.tmdb.org/t/p/w185"+ this.props.movie.poster}  alt={this.props.movie.poster} />
                 </figure>
                 </div>
                 <div className="card-content has-text-centered content-rectangle">
-                    <h2 className="title is-6">Sample Title (000 min)</h2>
-                    <p className="is-size-7">Sample tagline</p>
+                    <h2 className="title is-6"> {this.props.movie.title}({this.props.movie.runtime} min)</h2>
+                    <p className="is-size-7">{this.props.movie.tagline}</p>
                 </div>    
                 <footer className="card-footer">
-                    <MovieLink id="sm8iVzA7kRp0d4BSIsgXjsSBMKV" />
+                    <MovieLink id={this.props.movie.tmbID} />
                 </footer>                                      
             </div>                
         </li>
