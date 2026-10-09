@@ -22,12 +22,19 @@
 ------------------------------------------------------------------------------------------------------------------
 */
 class App extends React.Component {
+    //got this block from chatgpt
     constructor(props) {
             super(props);
             this.state = {
                 movies: movieData
             };
         }
+
+        saveChanges = (index, updatedMovie) => {
+            const moviesCopy = [...this.state.movies];
+            moviesCopy[index] = updatedMovie;
+            this.setState({ movies: moviesCopy });
+        };
     render() {
         
                 
@@ -41,6 +48,7 @@ class App extends React.Component {
                             movie={movie}
                             index={index}
                             key={index}
+                            saveChanges={this.saveChanges}
                         />
                     ))}
                 </div>
