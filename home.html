@@ -165,7 +165,7 @@ render() {
                     <p className="is-size-7">{this.props.movie.tagline}</p>
                 </div>    
                 <footer className="card-footer">
-                    <MovieLink id={this.props.movie.tmbID} />
+                    <MovieLink id={this.props.movie.tmdbID} />
                 </footer>                                      
             </div>                
         </li>
@@ -181,7 +181,7 @@ render() {
 const MovieLink = props => {
   return (
         <a className="button card-footer-item" 
-            href={ "https://www.themoviedb.org/movie/" + props.id } >
+            href={ "https://www.themoviedb.org/movie/" + props.id} >
 
                 <img src="images/tmdb.svg" width="30" />
         </a>    
