@@ -22,18 +22,27 @@
 ------------------------------------------------------------------------------------------------------------------
 */
 class App extends React.Component {
-
+    constructor(props) {
+            super(props);
+            this.state = {
+                movies: movieData
+            };
+        }
     render() {
-        // grab one sample movie
-        const sample = movieData[0];
+        
                 
         return (
             <main className="container">
                 <section className="columns has-background-light">
-                <MovieList movies={ movieData }/>
+                <MovieList movies={this.state.movies}/>
                 <div className="column is-half">
-
-                        <MovieForm movie={sample}    />
+                    {this.state.movies.map((movie, index) => (
+                        <MovieForm
+                            movie={movie}
+                            index={index}
+                            key={index}
+                        />
+                    ))}
                 </div>
                 </section>
             </main>                
@@ -59,7 +68,7 @@ class MovieForm extends React.Component {
                     </div>
                     <div className="field-body">
                         <input className="input" type="text" name="title"
-                            value="sample title" />   
+                            value={this.props.movie.title}/>   
                     </div>
                 </div>   
 
@@ -69,7 +78,7 @@ class MovieForm extends React.Component {
                     </div>
                     <div className="field-body">
                         <textarea className="textarea" rows="2"  name="tagline"
-                            value="sample tagline"></textarea>
+                            value={this.props.movie.tagline}></textarea>
                     </div>
                 </div>                  
 
@@ -79,7 +88,7 @@ class MovieForm extends React.Component {
                     </div>
                     <div className="field-body">
                         <input className="input" type="text" name="runtime"
-                            value="sample runtime"/>   
+                            value={this.props.movie.runtime}/>   
                     </div>
                 </div>    
                                                   
@@ -127,7 +136,7 @@ render() {
                 </figure>
                 </div>
                 <div className="card-content has-text-centered content-rectangle">
-                    <h2 className="title is-6"> {this.props.movie.title}({this.props.movie.runtime} min)</h2>
+                    <h2 className="title is-6"> {this.props.movie.title} ({this.props.movie.runtime} min)</h2>
                     <p className="is-size-7">{this.props.movie.tagline}</p>
                 </div>    
                 <footer className="card-footer">
@@ -136,7 +145,6 @@ render() {
             </div>                
         </li>
     )
-
 }
 
 }
