@@ -64,7 +64,18 @@ class App extends React.Component {
 ------------------------------------------------------------------------------------------------------------------
 */
 class MovieForm extends React.Component {
+    handleChange = (event) => {
+        const { name, value } = event.target;
 
+        //start from the current movie
+        const updatedMovie = {
+            ...this.props.movie,
+            [name]: value
+        };
+
+        //tell App about the change
+        this.props.saveChanges(this.props.index, updatedMovie);
+    };
 
     render() {
         return (
@@ -76,7 +87,9 @@ class MovieForm extends React.Component {
                     </div>
                     <div className="field-body">
                         <input className="input" type="text" name="title"
-                            value={this.props.movie.title}/>   
+                            value={this.props.movie.title}
+                            onChange={this.handleChange}
+                        />   
                     </div>
                 </div>   
 
@@ -86,7 +99,9 @@ class MovieForm extends React.Component {
                     </div>
                     <div className="field-body">
                         <textarea className="textarea" rows="2"  name="tagline"
-                            value={this.props.movie.tagline}></textarea>
+                            value={this.props.movie.tagline}
+                            onChange={this.handleChange}>
+                        </textarea>
                     </div>
                 </div>                  
 
@@ -96,7 +111,9 @@ class MovieForm extends React.Component {
                     </div>
                     <div className="field-body">
                         <input className="input" type="text" name="runtime"
-                            value={this.props.movie.runtime}/>   
+                            value={this.props.movie.runtime}
+                            onChange={this.handleChange}
+                            />   
                     </div>
                 </div>    
                                                   
